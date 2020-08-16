@@ -17,6 +17,26 @@ async function play(url, message) {
 	connection.play(await ytdl(url), { filter:'audioonly' });
 }
 
+async function stop(message) {
+					console.log("function jalan")
+					if(!message.guild.voiceConnection) {return;}
+					console.log("1/3")
+					let userVoiceChannel = message.member.voice;
+					if (!userVoiceChannel) {return;}
+					console.log("2/3")
+					let clientVoiceConnection = message.guild.voice;
+					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
+						console.log("3/3")
+						if (message.member.hasPermission('ADMINISTRATOR')) {
+							clientVoiceConnection.disconnect();
+							message.channel.send('Siap bang admin');
+						} else if (message.member.roles.cache.some("DJ")) {
+							clientVoiceConnection.disconnect();
+							message.channel.send('Siap bang DJ');
+						} else {message.reply("ngemis mod dlu sana ato ngemis DJ dlu");}						
+					} else {message.reply('masuk voice chat nya dulu napa ?');}
+				}
+
 client.on('ready', () => {
 	client.user.setStatus('online', "auk-?")
 	client.user.setPresence({
@@ -77,25 +97,7 @@ client.on('message', message => {
 			case "disconnect":
 			case "leave":
 				console.log("masuk")
-				async function stop() {
-					console.log("function jalan")
-					if(!message.guild.voiceConnection) {return;}
-					console.log("1/3")
-					let userVoiceChannel = message.member.voice;
-					if (!userVoiceChannel) {return;}
-					console.log("2/3")
-					let clientVoiceConnection = message.guild.voice;
-					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
-						console.log("3/3")
-						if (message.member.hasPermission('ADMINISTRATOR')) {
-							clientVoiceConnection.disconnect();
-							message.channel.send('Siap bang admin');
-						} else if (message.member.roles.cache.some("DJ")) {
-							clientVoiceConnection.disconnect();
-							message.channel.send('Siap bang DJ');
-						} else {message.reply("ngemis mod dlu sana ato ngemis DJ dlu");}						
-					} else {message.reply('masuk voice chat nya dulu napa ?');}
-				}
+				stop(message);
 				break;
 			default:
 				message.channel.send("pake rus!help dlu sana")
