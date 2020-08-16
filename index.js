@@ -44,7 +44,7 @@ client.on('message', message => {
 				if (!message.guild) return;
 	    			if (message.member.voice.channel) {
       					const connection = message.member.voice.channel.join();
-					server.dispatcher = connection.playStream(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', {filter: "audioonly"}));
+					server.dispatcher = connection.play(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', {filter: "audioonly"}));
     				} else {
       					message.channel.send('Join voice chat dlu goblok!');
     				}
