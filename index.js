@@ -24,17 +24,16 @@ async function stop(message) {
 	if (!userVoiceChannel) return;
 	let clientVoiceConnection = message.guild.voice;
 	if (clientVoiceConnection == undefined) message.reply("aku tidak di dalam voice channel apapun :)");
-	else if (clientVoiceConnection.channel.type == 'voice' && userVoiceChannel.channel === clientVoiceConnection.channel) {
-		message.reply('masuk voice chat nya dulu napa ?');
-	} else {
+	else if (userVoiceChannel.channel === clientVoiceConnection.channel) {
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
 		} else if (message.member.roles.cache.some("DJ")) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang DJ');
-		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");						
-	}
+		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
+	} else message.reply('masuk voice chat nya dulu napa ?');
+
 }
 
 client.on('ready', () => {
@@ -98,6 +97,13 @@ client.on('message', message => {
 			case "leave":
 				console.log("masuk")
 				stop(message);
+				break;
+			case "report":
+				message.channel.send("`Command report ini akan langsung mengarah ke DM author (OkutaJager), silahkan ketik bug, dsb setelah membaca pesan ini`")
+				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ;{time:100000});
+				collector.on('collect',response => {
+					message[client.users.get(331688530248073218)].send(response)
+				});
 				break;
 			default:
 				message.channel.send("pake rus!help dlu sana")
