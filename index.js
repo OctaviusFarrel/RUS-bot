@@ -23,6 +23,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+	var server = servers[message.guild.id]
 	var MsgLow = message.content.toLowerCase();
 	if (MsgLow.startsWith(prefix)) {
 		MsgLow = MsgLow.slice(4)
@@ -43,7 +44,7 @@ client.on('message', message => {
 				if (!message.guild) return;
 	    			if (message.member.voice.channel) {
       					const connection = message.member.voice.channel.join();
-					connection.play(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', { filter: 'audioonly' }));
+					server.dispatcher = connection.playStream(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', {filter: "audioonly"}));
     				} else {
       					message.channel.send('Join voice chat dlu goblok!');
     				}
