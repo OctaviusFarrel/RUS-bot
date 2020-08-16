@@ -11,6 +11,10 @@ const CommandList = {
 }
 const ytdl = require('ytdl-core');
 
+async function play(connection, url) {
+	connection.play(await ytdl(url), { type: 'opus' });
+}
+
 client.on('ready', () => {
   client.user.setAvatar(ProfilePicture).catch(err => console.log(err));
   client.user.setStatus('online', "auk-?")
@@ -56,11 +60,10 @@ client.on('message', async message => {
 	if (message.member.voice.channel) {
 		if (message.content.toLowerCase() == "rus!pekora") {
 			const connection = await message.member.voice.channel.join();
-			const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
-			dispatcher.on('error', console.error);
-		} else {
-		message.reply('Join voice chat dlu goblok!');
+			connection.play(ytdl('https://www.youtube.com/watch?v=ZlAU_w7-Xp8', { filter: 'audioonly' }));
 		}
+	} else {
+		message.reply('Join voice chat dlu goblok!');
 	}
 });
 
