@@ -23,7 +23,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-	var server = servers[message.guild.id]
+	var server = Guild[message.guild.id]
 	var MsgLow = message.content.toLowerCase();
 	if (MsgLow.startsWith(prefix)) {
 		MsgLow = MsgLow.slice(4)
