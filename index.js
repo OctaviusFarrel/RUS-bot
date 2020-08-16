@@ -39,7 +39,7 @@ client.on('message', message => {
 			case "help":
 				
 				break;
-			case "pekora":
+			/*case "pekora":
 				if (message.member.voice.channel) {
 					const connection = message.member.voice.channel.join();
 					const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
@@ -47,9 +47,21 @@ client.on('message', message => {
 				} else {
 					message.reply('Join voice chat dlu goblok!');
 				}
-				break;
+				break;*/
 		}
 	}
 })
+
+client.on('message', async message => {
+	if (message.member.voice.channel) {
+		if (message.content.toLowerCase() == "rus!pekora") {
+			const connection = await message.member.voice.channel.join();
+			const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
+			dispatcher.on('error', console.error);
+		} else {
+		message.reply('Join voice chat dlu goblok!');
+		}
+	}
+});
 
 client.login(process.env.token);
