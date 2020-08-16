@@ -24,7 +24,7 @@ async function stop(message) {
 	if (!userVoiceChannel) return;
 	let clientVoiceConnection = message.guild.voice;
 	if (clientVoiceConnection == undefined) message.reply("aku tidak di dalam voice channel apapun :)");
-	else if (!clientVoiceConnection.channel.type == "voice") message.reply('masuk voice chat nya dulu napa ?');
+	else if (clientVoiceConnection.channel.type == 'voice') message.reply('masuk voice chat nya dulu napa ?');
 	else if (userVoiceChannel.channel === clientVoiceConnection.channel) {
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			clientVoiceConnection.channel.leave();
@@ -37,7 +37,7 @@ async function stop(message) {
 }
 
 client.on('ready', () => {
-	client.user.setStatus('online', "auk-?")
+	client.user.setStatus('online', "rus!help").catch(err => console.log(err));
 	client.user.setPresence({
         game: {
             name: 'rus!help',
