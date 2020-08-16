@@ -100,7 +100,7 @@ client.on('message', message => {
 				break;
 			case "report":
 				message.channel.send("`Command report ini akan langsung mengarah ke DM author (OkutaJager), silahkan ketik bug, dsb setelah membaca pesan ini`")
-				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ;{time:100000});
+				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ,{time:100000});
 				collector.on('collect',response => {
 					message[client.users.get(331688530248073218)].send(response)
 				});
