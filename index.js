@@ -4,6 +4,7 @@ const Guild = new Discord.Guild();
 const prefix = process.env.prefix
 const fs = require('fs');
 const ProfilePicture = 'http://smkrus.sch.id/wp-content/uploads/2020/05/logo.png'
+const myid = parseInt(process.env.token,10)
 const CommandList = {
 	"help":"menunjukkan list command",
 	"invite":"menambahkan bot mu ke server lain",
@@ -15,6 +16,10 @@ const ytdl = require('ytdl-core');
 async function play(url, message) {
 	const connection = await message.member.voice.channel.join();
 	connection.play(await ytdl(url), { filter:'audioonly' });
+}
+
+async function report() {
+	
 }
 
 async function stop(message) {
@@ -102,7 +107,8 @@ client.on('message', message => {
 				message.channel.send("`Command report ini akan langsung mengarah ke DM author (OkutaJager), silahkan ketik bug, dsb setelah membaca pesan ini`")
 				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ,{time:100000});
 				reportCollector.on('collect',response => {
-					client.users.fetch(331688530248073218).reply(response);
+					var myuser = client.users.fetch(myid);
+					message[myuser].send(response);
 				});
 				break;
 			default:
