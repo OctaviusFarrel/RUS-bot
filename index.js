@@ -39,7 +39,7 @@ client.on('message', message => {
 			case "help":
 				
 				break;
-			case "pekora':
+			case "pekora":
 				if (message.member.voice.channel) {
 					const connection = message.member.voice.channel.join();
 					const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
