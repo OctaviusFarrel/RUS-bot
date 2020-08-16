@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const Guild = new Discord.Guild();
 const prefix = process.env.prefix
 const fs = require('fs');
-const ProfilePicture = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsmkrus.sch.id%2F&psig=AOvVaw1NuV5V0j0Yyb6ESu2IgGKM&ust=1597672732119000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDboO7wn-sCFQAAAAAdAAAAABAD'
+const ProfilePicture = 'http://smkrus.sch.id/wp-content/uploads/2020/05/logo.png'
 const CommandList = {
 	"help":"menunjukkan list command",
 	"invite":"menambahkan bot mu ke server lain",
@@ -11,8 +11,9 @@ const CommandList = {
 }
 const ytdl = require('ytdl-core');
 
-async function play(connection, url) {
-	connection.play(await ytdl(url), { type: 'opus' });
+async function play(url) {
+	const connection = await message.member.voice.channel.join();
+	connection.play(await ytdl(url), { filter:'audioonly' });
 }
 
 client.on('ready', () => {
@@ -41,22 +42,29 @@ client.on('message', message => {
 				message.channel.send(Embed);
 				break;
 			case "help":
-				
+				MsgLow = "";
+				for (const [key,value] of Object.entries(CommandList)) {
+					MsgLow = MsgLow.concat("`"+key+"` - "+value+"\n")
+				}
+				const Embed = new Discord.MessageEmbed()
+				.setColor('#0099ff')
+				.setTitle('List Perintah')
+				.setDescription(MsgLow)
+				.setTimestamp();
+				message.channel.send(Embed);
 				break;
-			/*case "pekora":
+			case "pekora":
 				if (message.member.voice.channel) {
-					const connection = message.member.voice.channel.join();
-					const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
-					dispatcher.on('error', console.error);
+					play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8')
 				} else {
 					message.reply('Join voice chat dlu goblok!');
 				}
-				break;*/
+				break;
 		}
 	}
 })
 
-client.on('message', async message => {
+/*client.on('message', async message => {
 	if (message.member.voice.channel) {
 		if (message.content.toLowerCase() == "rus!pekora") {
 			const connection = await message.member.voice.channel.join();
@@ -64,7 +72,7 @@ client.on('message', async message => {
 		}
 	} else {
 		message.reply('Join voice chat dlu goblok!');
-	}
+	}*/
 });
 
 client.login(process.env.token);
