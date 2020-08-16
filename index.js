@@ -23,7 +23,6 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-	var server = Guild[message.guild.id]
 	var MsgLow = message.content.toLowerCase();
 	if (MsgLow.startsWith(prefix)) {
 		MsgLow = MsgLow.slice(4)
@@ -40,20 +39,20 @@ client.on('message', message => {
 			case "help":
 				
 				break;
-			case "pekora":
-				if (!message.guild) return;
-	    			if (message.member.voice.channel) {
-      					const connection = message.member.voice.channel.join();
-					server.dispatcher = connection.play(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', {filter: "audioonly"}));
-    				} else {
-      					message.channel.send('Join voice chat dlu goblok!');
-    				}
-				break;
-				
 		}
 	}
 })
 
-client.login(process.env.token);
 
-//
+client.on('message', async message => {
+	if (!message.guild) return;
+	if (message.content.toLowerCase() == 'rus!pekora') {
+		if (message.member.voice.channel) {
+			const connection = await message.member.voice.channel.join();
+			connection.play(ytdl('https://www.youtube.com/watch?v=ZlAU_w7-Xp8', { filter: 'audioonly' }));
+		} else {
+			message.reply('Join voice chat dlu goblok!');
+		}
+	}
+});
+client.login(process.env.token);
