@@ -10,7 +10,7 @@ client.on('ready', () => {
   client.user.setStatus('online', "auk-?")
   client.user.setPresence({
         game: {
-            name: 'rus!',
+            name: 'rus!help',
         }
     });
   console.log('I am ready!');
