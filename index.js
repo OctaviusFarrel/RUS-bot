@@ -9,7 +9,9 @@ const CommandList = {
 	"help":"menunjukkan list command",
 	"invite":"menambahkan bot mu ke server lain",
 	"pekora":"commit war crimes",
-	"info":"info seputar bot"
+	"info":"info seputar bot",
+	"disconnect":"keluar dari voice channel",
+	"play":"coming soon"
 }
 const ytdl = require('ytdl-core');
 
@@ -97,7 +99,7 @@ client.on('message', message => {
 				}
 				break;*/
 			case "info":
-				message.channel.send("`Version 1.0.0\nAuthor OkutaJager\nCondition Unstable\nMay crash anytime`")
+				message.channel.send("`Version : 1.0.1\nAuthor : OkutaJager\nCondition : Unstable\nMay crash anytime`")
 				break;
 			case "dc":
 			case "disconnect":
@@ -105,13 +107,13 @@ client.on('message', message => {
 				console.log("masuk")
 				stop(message);
 				break;
-			case "report":
+			/*case "report":
 				message.channel.send("`Command report ini akan langsung mengarah ke DM author (OkutaJager), silahkan ketik bug, dsb setelah membaca pesan ini`")
 				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ,{time:100000});
 				reportCollector.on('collect',response => {
 					report(message,myid,response);
 				});
-				break;
+				break;*/
 			default:
 				message.channel.send("pake rus!help dlu sana")
 		}
