@@ -78,10 +78,12 @@ client.on('message', message => {
 			case "leave":
 				async function stop() {
 					if(!message.guild.voiceConnection) return;
-					let userVoiceChannel = message.member.voiceChannel;
+					let userVoiceChannel = message.member.voice;
 					if (!userVoiceChannel) return;
-					let clientVoiceConnection = message.guild.voiceConnection;
-					if (userVoiceChannel === clientVoiceConnection.channel) {
+					console.log("2/3")
+					let clientVoiceConnection = message.guild.voice;
+					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
+						console.log("3/3")
 						if (message.member.hasPermission('ADMINISTRATOR')) {
 							clientVoiceConnection.disconnect();
 							message.channel.send('Siap bang admin');
