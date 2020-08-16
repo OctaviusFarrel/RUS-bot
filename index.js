@@ -60,7 +60,7 @@ client.on('message', async message => {
 	if (message.member.voice.channel) {
 		if (message.content.toLowerCase() == "rus!pekora") {
 			const connection = await message.member.voice.channel.join();
-			connection.play(ytdl('https://www.youtube.com/watch?v=ZlAU_w7-Xp8', { filter: 'audioonly' }));
+			connection.play(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', { filter: 'audioonly' }));
 		}
 	} else {
 		message.reply('Join voice chat dlu goblok!');
