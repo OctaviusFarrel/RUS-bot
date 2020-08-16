@@ -19,7 +19,7 @@ async function play(url, message) {
 
 async function stop(message) {
 					console.log("function jalan")
-					if(!message.guild.voiceConnection) {return;}
+					if (!message.guild) return;
 					console.log("1/3")
 					let userVoiceChannel = message.member.voice;
 					if (!userVoiceChannel) {return;}
