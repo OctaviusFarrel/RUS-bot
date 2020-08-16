@@ -77,9 +77,9 @@ client.on('message', message => {
 			case "disconnect":
 			case "leave":
 				async function stop() {
-					if(!message.guild.voiceConnection) return;
+					if(!message.guild.voiceConnection) {return;}
 					let userVoiceChannel = message.member.voice;
-					if (!userVoiceChannel) return;
+					if (!userVoiceChannel) {return;}
 					console.log("2/3")
 					let clientVoiceConnection = message.guild.voice;
 					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
@@ -90,9 +90,9 @@ client.on('message', message => {
 						} else if (message.member.roles.cache.some("DJ")) {
 							clientVoiceConnection.disconnect();
 							message.channel.send('Siap bang DJ');
-						} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");						
-					} else message.reply('masuk voice chat nya dulu napa ?');
-}
+						} else {message.reply("ngemis mod dlu sana ato ngemis DJ dlu");}						
+					} else {message.reply('masuk voice chat nya dulu napa ?');}
+				}
 				break;
 			default:
 				message.channel.send("pake rus!help dlu sana")
