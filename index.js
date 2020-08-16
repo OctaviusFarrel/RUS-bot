@@ -76,7 +76,7 @@ client.on('message', message => {
 			case "dc":
 			case "disconnect":
 			case "leave":
-				asnyc stop() {
+				asnyc function stop() {
 					if(!message.guild.voiceConnection) return;
 					let userVoiceChannel = message.member.voiceChannel;
 					if (!userVoiceChannel) return;
