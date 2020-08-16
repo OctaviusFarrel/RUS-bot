@@ -41,10 +41,10 @@ client.on('message', message => {
 			case "pekora":
 				if (!message.guild) return;
 	    			if (message.member.voice.channel) {
-      					const connection = await message.member.voice.channel.join();
+      					const connection = message.member.voice.channel.join();
 					connection.play(ytdl('https://www.youtube.com/watch?v=7dNrO7TSZdU', { filter: 'audioonly' }));
     				} else {
-      					message.reply('Join voice chat dlu goblok!');
+      					message.channel.send('Join voice chat dlu goblok!');
     				}
 				break;
 				
