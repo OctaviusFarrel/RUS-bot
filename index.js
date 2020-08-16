@@ -28,10 +28,10 @@ async function stop(message) {
 					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
 						console.log("3/3")
 						if (message.member.hasPermission('ADMINISTRATOR')) {
-							clientVoiceConnection.disconnect();
+							clientVoiceConnection.channel.leave();
 							message.channel.send('Siap bang admin');
 						} else if (message.member.roles.cache.some("DJ")) {
-							clientVoiceConnection.disconnect();
+							clientVoiceConnection.channel.leave();
 							message.channel.send('Siap bang DJ');
 						} else {message.reply("ngemis mod dlu sana ato ngemis DJ dlu");}						
 					} else {message.reply('masuk voice chat nya dulu napa ?');}
