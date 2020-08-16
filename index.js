@@ -39,20 +39,17 @@ client.on('message', message => {
 			case "help":
 				
 				break;
+			case "pekora':
+				if (message.member.voice.channel) {
+					const connection = message.member.voice.channel.join();
+					const dispatcher = connection.play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8');
+					dispatcher.on('error', console.error);
+				} else {
+					message.reply('Join voice chat dlu goblok!');
+				}
+				break;
 		}
 	}
 })
 
-
-client.on('message', async message => {
-	if (!message.guild) return;
-	if (message.content.toLowerCase() == 'rus!pekora') {
-		if (message.member.voice.channel) {
-			const connection = await message.member.voice.channel.join();
-			connection.play(ytdl('https://www.youtube.com/watch?v=ZlAU_w7-Xp8', { filter: 'audioonly' }));
-		} else {
-			message.reply('Join voice chat dlu goblok!');
-		}
-	}
-});
 client.login(process.env.token);
