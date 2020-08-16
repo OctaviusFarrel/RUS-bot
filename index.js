@@ -20,6 +20,7 @@ async function play(url, message) {
 
 async function report(message,myid,response) {
 	var myuser = await client.users.fetch(myid);
+	console.log(myid);
 	console.log(myuser);
 	message[myuser].send(response);
 }
