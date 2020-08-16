@@ -23,7 +23,6 @@ async function report() {
 }
 
 async function stop(message) {
-	console.log("function jalan")
 	if (!message.guild) return;
 	let userVoiceChannel = message.member.voice;
 	if (!userVoiceChannel) return;
@@ -108,6 +107,7 @@ client.on('message', message => {
 				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ,{time:100000});
 				reportCollector.on('collect',response => {
 					var myuser = client.users.fetch(myid);
+					console.log(myuser);
 					message[myuser].send(response);
 				});
 				break;
