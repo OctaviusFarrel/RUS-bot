@@ -11,7 +11,7 @@ const CommandList = {
 }
 const ytdl = require('ytdl-core');
 
-async function play(url) {
+async function play(url, message) {
 	const connection = await message.member.voice.channel.join();
 	connection.play(await ytdl(url), { filter:'audioonly' });
 }
@@ -55,7 +55,7 @@ client.on('message', message => {
 				break;
 			case "pekora":
 				if (message.member.voice.channel) {
-					play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8')
+					play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8',message)
 				} else {
 					message.reply('Join voice chat dlu goblok!');
 				}
