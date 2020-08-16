@@ -17,6 +17,22 @@ async function play(url, message) {
 	connection.play(await ytdl(url), { filter:'audioonly' });
 }
 
+asnyc function stop(message) {
+	if(!message.guild.voiceConnection) return;
+	let userVoiceChannel = message.member.voiceChannel;
+	if (!userVoiceChannel) return;
+	let clientVoiceConnection = message.guild.voiceConnection;
+	if (userVoiceChannel === clientVoiceConnection.channel) {
+		if (message.member.hasPermission('ADMINISTRATOR')) {
+			clientVoiceConnection.disconnect();
+			message.channel.send('Siap bang admin');
+		} else if (message.member.roles.cache.some("DJ")) {
+			clientVoiceConnection.disconnect();
+			message.channel.send('Siap bang DJ');
+		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");						
+	} else message.reply('masuk voice chat nya dulu napa ?');
+}
+
 client.on('ready', () => {
 	client.user.setStatus('online', "auk-?")
 	client.user.setPresence({
@@ -76,22 +92,7 @@ client.on('message', message => {
 			case "dc":
 			case "disconnect":
 			case "leave":
-				asnyc function stop() {
-					if(!message.guild.voiceConnection) return;
-					let userVoiceChannel = message.member.voiceChannel;
-					if (!userVoiceChannel) return;
-					let clientVoiceConnection = message.guild.voiceConnection;
-					if (userVoiceChannel === clientVoiceConnection.channel) {
-						if (message.member.hasPermission('ADMINISTRATOR')) {
-							clientVoiceConnection.disconnect();
-							message.channel.send('Siap bang admin');
-						} else if (message.member.roles.cache.some("DJ")) {
-							clientVoiceConnection.disconnect();
-							message.channel.send('Siap bang DJ');
-						} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
-						
-					} else message.reply('masuk voice chat nya dulu napa ?');
-				}
+				stop(message);
 				break;
 			default:
 				message.channel.send("pake rus!help dlu sana")
