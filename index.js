@@ -72,7 +72,7 @@ client.on('message', message => {
 		}
 	} else {
 		message.reply('Join voice chat dlu goblok!');
-	}*/
-});
+	}
+});*/
 
 client.login(process.env.token);
