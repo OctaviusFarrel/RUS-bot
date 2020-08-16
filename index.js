@@ -39,7 +39,7 @@ client.on('message', message => {
 				.setTitle('Klik link')
 				.setURL('https://discord.com/api/oauth2/authorize?client_id=744547971353411585&scope=bot&permissions=8')
 				.setTimestamp();
-				message.channel.send(Embed);
+				message.channel.send(EmbedInvite);
 				break;
 			case "help":
 				MsgLow = "";
@@ -51,7 +51,7 @@ client.on('message', message => {
 				.setTitle('List Perintah')
 				.setDescription(MsgLow)
 				.setTimestamp();
-				message.channel.send(Embed);
+				message.channel.send(EmbedHelp);
 				break;
 			case "pekora":
 				if (message.member.voice.channel) {
