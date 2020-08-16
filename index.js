@@ -7,7 +7,8 @@ const ProfilePicture = 'http://smkrus.sch.id/wp-content/uploads/2020/05/logo.png
 const CommandList = {
 	"help":"menunjukkan list command",
 	"invite":"menambahkan bot mu ke server lain",
-	"pekora":"commit war crimes"
+	"pekora":"commit war crimes",
+	"info":"info seputar bot"
 }
 const ytdl = require('ytdl-core');
 
@@ -68,6 +69,9 @@ client.on('message', message => {
 					message.reply('Join voice chat dlu goblok!');
 				}
 				break;*/
+			case "info":
+				message.channel.send("`Version 1.0.0\nAuthor OkutaJager\nCondition Unstable\nMay crash anytime`")
+				break;
 		}
 	}
 })
