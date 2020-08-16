@@ -18,13 +18,13 @@ async function play(url, message) {
 }
 
 client.on('ready', () => {
-  client.user.setAvatar(ProfilePicture).catch(err => console.log(err));
-  client.user.setStatus('online', "auk-?")
-  client.user.setPresence({
+	client.user.setStatus('online', "auk-?")
+	client.user.setPresence({
         game: {
             name: 'rus!help',
         }
     });
+  client.user.setAvatar(ProfilePicture).catch(err => console.log(err));
   console.log('I am ready!');
 });
 
@@ -63,6 +63,7 @@ client.on('message', message => {
 				break;
 			/*case "play":
 			case "p":
+				var
 				if (message.member.voice.channel) {
 					play('https://www.youtube.com/watch?v=7dNrO7TSZdU',message)
 				} else {
@@ -72,6 +73,28 @@ client.on('message', message => {
 			case "info":
 				message.channel.send("`Version 1.0.0\nAuthor OkutaJager\nCondition Unstable\nMay crash anytime`")
 				break;
+			case "dc":
+			case "disconnect":
+			case "leave":
+				asnyc stop() {
+					if(!message.guild.voiceConnection) return;
+					let userVoiceChannel = message.member.voiceChannel;
+					if (!userVoiceChannel) return;
+					let clientVoiceConnection = message.guild.voiceConnection;
+					if (userVoiceChannel === clientVoiceConnection.channel) {
+						if (message.member.hasPermission('ADMINISTRATOR')) {
+							clientVoiceConnection.disconnect();
+							message.channel.send('Siap bang admin');
+						} else if (message.member.roles.cache.some("DJ")) {
+							clientVoiceConnection.disconnect();
+							message.channel.send('Siap bang DJ');
+						} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
+						
+					} else message.reply('masuk voice chat nya dulu napa ?');
+				}
+				break;
+			default:
+				message.channel.send("pake rus!help dlu sana")
 		}
 	}
 })
