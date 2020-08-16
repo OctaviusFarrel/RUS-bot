@@ -76,8 +76,11 @@ client.on('message', message => {
 			case "dc":
 			case "disconnect":
 			case "leave":
+				console.log("masuk")
 				async function stop() {
+					console.log("function jalan")
 					if(!message.guild.voiceConnection) {return;}
+					console.log("1/3")
 					let userVoiceChannel = message.member.voice;
 					if (!userVoiceChannel) {return;}
 					console.log("2/3")
