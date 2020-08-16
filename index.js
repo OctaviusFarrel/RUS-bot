@@ -18,24 +18,22 @@ async function play(url, message) {
 }
 
 async function stop(message) {
-					console.log("function jalan")
-					if (!message.guild) return;
-					console.log("1/3")
-					let userVoiceChannel = message.member.voice;
-					if (!userVoiceChannel) {return;}
-					console.log("2/3")
-					let clientVoiceConnection = message.guild.voice;
-					if (userVoiceChannel.channel === clientVoiceConnection.channel) {
-						console.log("3/3")
-						if (message.member.hasPermission('ADMINISTRATOR')) {
-							clientVoiceConnection.channel.leave();
-							message.channel.send('Siap bang admin');
-						} else if (message.member.roles.cache.some("DJ")) {
-							clientVoiceConnection.channel.leave();
-							message.channel.send('Siap bang DJ');
-						} else {message.reply("ngemis mod dlu sana ato ngemis DJ dlu");}						
-					} else {message.reply('masuk voice chat nya dulu napa ?');}
-				}
+	console.log("function jalan")
+	if (!message.guild) return;
+	let userVoiceChannel = message.member.voice;
+	if (!userVoiceChannel) return;
+	let clientVoiceConnection = message.guild.voice;
+	if (userVoiceChannel.channel === clientVoiceConnection.channel) {
+		if (message.member.hasPermission('ADMINISTRATOR')) {
+			clientVoiceConnection.channel.leave();
+			message.channel.send('Siap bang admin');
+		} else if (message.member.roles.cache.some("DJ")) {
+			clientVoiceConnection.channel.leave();
+			message.channel.send('Siap bang DJ');
+		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");						
+	} else if (client.channels.cache.type('voice')) message.reply('masuk voice chat nya dulu napa ?');
+	else message.reply("aku tidak di dalam voice channel apapun :)");
+}
 
 client.on('ready', () => {
 	client.user.setStatus('online', "auk-?")
