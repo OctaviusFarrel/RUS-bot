@@ -23,7 +23,9 @@ async function stop(message) {
 	let userVoiceChannel = message.member.voice;
 	if (!userVoiceChannel) return;
 	let clientVoiceConnection = message.guild.voice;
-	if (userVoiceChannel.channel === clientVoiceConnection.channel) {
+	if (clientVoiceConnection.channel == undefined) message.reply("aku tidak di dalam voice channel apapun :)");
+	else if (!clientVoiceConnection.channel.type('voice')) message.reply('masuk voice chat nya dulu napa ?');
+	else if (userVoiceChannel.channel === clientVoiceConnection.channel) {
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
@@ -31,8 +33,7 @@ async function stop(message) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang DJ');
 		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");						
-	} else if (client.channels.cache.type('voice')) message.reply('masuk voice chat nya dulu napa ?');
-	else message.reply("aku tidak di dalam voice channel apapun :)");
+	}
 }
 
 client.on('ready', () => {
