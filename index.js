@@ -55,11 +55,19 @@ client.on('message', message => {
 				break;
 			case "pekora":
 				if (message.member.voice.channel) {
-					play('https://www.youtube.com/watch?v=ZlAU_w7-Xp8',message)
+					play('https://www.youtube.com/watch?v=7dNrO7TSZdU',message)
 				} else {
 					message.reply('Join voice chat dlu goblok!');
 				}
 				break;
+			/*case "play":
+			case "p":
+				if (message.member.voice.channel) {
+					play('https://www.youtube.com/watch?v=7dNrO7TSZdU',message)
+				} else {
+					message.reply('Join voice chat dlu goblok!');
+				}
+				break;*/
 		}
 	}
 })
