@@ -34,7 +34,7 @@ client.on('message', message => {
 		console.log(MsgLow)
 		switch (MsgLow) {
 			case "invite":
-				const Embed = new Discord.MessageEmbed()
+				const EmbedInvite = new Discord.MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle('Klik link')
 				.setURL('https://discord.com/api/oauth2/authorize?client_id=744547971353411585&scope=bot&permissions=8')
@@ -46,7 +46,7 @@ client.on('message', message => {
 				for (const [key,value] of Object.entries(CommandList)) {
 					MsgLow = MsgLow.concat("`"+key+"` - "+value+"\n")
 				}
-				const Embed = new Discord.MessageEmbed()
+				const EmbedHelp = new Discord.MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle('List Perintah')
 				.setDescription(MsgLow)
