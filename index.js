@@ -25,7 +25,8 @@ client.on('ready', () => {
 client.on('message', message => {
 	var MsgLow = message.content.toLowerCase();
 	if (MsgLow.startsWith(prefix)) {
-		MsgLow = MsgLow.slice(5)
+		MsgLow = MsgLow.slice(4)
+		console.log(MsgLow)
 		switch (MsgLow) {
 			case "invite":
 				const Embed = new Discord.MessageEmbed()
