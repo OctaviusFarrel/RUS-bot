@@ -18,8 +18,10 @@ async function play(url, message) {
 	connection.play(await ytdl(url), { filter:'audioonly' });
 }
 
-async function report() {
-	
+async function report(message,myid,response) {
+	var myuser = await client.users.fetch(myid);
+	console.log(myuser);
+	message[myuser].send(response);
 }
 
 async function stop(message) {
@@ -106,9 +108,7 @@ client.on('message', message => {
 				message.channel.send("`Command report ini akan langsung mengarah ke DM author (OkutaJager), silahkan ketik bug, dsb setelah membaca pesan ini`")
 				const reportCollector = new Discord.MessageCollector(message.channel,response => response.author.id == message.author.id ,{time:100000});
 				reportCollector.on('collect',response => {
-					var myuser = client.users.fetch(myid);
-					console.log(myuser);
-					message[myuser].send(response);
+					report(message,myid,response);
 				});
 				break;
 			default:
