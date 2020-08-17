@@ -90,6 +90,11 @@ client.on('message', message => {
 			stop(message);
 		} else if (MsgLow == "info") {
 			message.channel.send("`Version : 1.0.1\nAuthor : OkutaJager\nCondition : Unstable\nMay crash anytime`");
+		} else if (MsgLow.includes("ban")) {
+			var banData = MsgLow.split(" ");
+			var banReason = new String(banData.slice(2));
+			var userBan = message.mentions.users.first();
+			message.channel.send(userBan+"\n"+banReason)
 		} else message.channel.send("pake rus!help dlu sana")
 			/*case "play":
 			case "p":
