@@ -92,7 +92,10 @@ client.on('message', message => {
 			message.channel.send("`Version : 1.0.1\nAuthor : OkutaJager\nCondition : Unstable\nMay crash anytime`");
 		} else if (MsgLow.includes("ban")) {
 			if (message.member.hasPermission('BAN_MEMBERS')) {
-				if (!message.mentions.users.first() === undefined) return;
+				if (message.mentions.users.first() === undefined) {
+					message.send.channel("Mau ngeban setan ?");
+					return;
+				}
 				var banData = MsgLow.split(" ");
 				var banReasonArray = banData.slice(2);
 				var banReason = "";
@@ -104,7 +107,10 @@ client.on('message', message => {
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
 		} else if (MsgLow.includes("kick")) {
 			if (message.member.hasPermission('KICK_MEMBERS')) {
-				if (!message.mentions.users.first() === undefined) return;
+				if (message.mentions.users.first() === undefined) {
+					message.channel.send("Mau ngekick setan ?")
+					return;
+				}
 				var userKick = message.mentions.users.first();
 				message.channel.send(userKick);
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
