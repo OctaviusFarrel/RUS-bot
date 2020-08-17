@@ -32,8 +32,11 @@ async function stop(message) {
 	let userVoiceChannel = message.member.voice;
 	if (!userVoiceChannel) return;
 	let clientVoiceConnection = message.guild.voice;
-	if (clientVoiceConnection == undefined) message.reply("aku tidak di dalam voice channel apapun :)");
-	else if (userVoiceChannel.channel === clientVoiceConnection.channel) {
+	if (clientVoiceConnection == undefined) {
+		message.reply("aku tidak di dalam voice channel apapun :)");
+		return;
+	}
+	if (userVoiceChannel.channel === clientVoiceConnection.channel) {
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
