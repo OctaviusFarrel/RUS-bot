@@ -96,17 +96,19 @@ client.on('message', message => {
 		} else if (MsgLow.includes("ban")) {
 			if (message.member.hasPermission('BAN_MEMBERS')) {
 				if (message.mentions.users.first() === undefined) {
-					message.send.channel("Mau ngeban setan ?");
+					message.channel.send("Mau ngeban setan ?");
 					return;
 				}
 				var banData = MsgLow.split(" ");
-				var banReasonArray = banData.slice(2);
+				banData = banData.slice(2);
 				var banReason = "";
-				for (var word in banReasonArray) {
-				banReason = banReason.concat(banReasonArray[word]+" ");
+				for (var word in banData) {
+				banReason = banReason.concat(banData[word]+" ");
 				}
-				var userBan = message.mentions.users.first();
-				message.channel.send(userBan+"\n"+banReason);
+				var userBan = message.guild.member(message.mentions.users.first());
+				userBan.ban({days:0,banReason})
+				.then(message.channel.send("RIP "+message.mention.users.first().tag))
+				.catch(console.error)
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
 		} else if (MsgLow.includes("kick")) {
 			if (message.member.hasPermission('KICK_MEMBERS')) {
@@ -114,8 +116,14 @@ client.on('message', message => {
 					message.channel.send("Mau ngekick setan ?")
 					return;
 				}
-				var userKick = message.mentions.users.first();
-				message.channel.send(userKick);
+				var kickData = MsgLow.split(" ");
+				kickData = kickData.slice(2);
+				var kickReason = "";
+				for (var word in kickData) {
+				kickReason = kickReason.concat(kickData[word]+" ");
+				}
+				var userKick = message.guild.member(message.mentions.users.first());
+				userKick.kick(kickReason);
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
 		} else message.channel.send("pake rus!help dlu sana")
 			/*case "play":
