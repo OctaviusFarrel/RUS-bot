@@ -37,13 +37,13 @@ async function stop(message) {
 		return;
 	}
 	if (userVoiceChannel.channel === clientVoiceConnection.channel) {
-		if (message.member.hasPermission('ADMINISTRATOR')) {
+		if (message.member.hasPermission('MANAGE_CHANNEL')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
-		} /*else if (message.member.roles.cache.some("DJ")) {
+		} else if (message.member.roles.name("DJ")) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang DJ');
-		}*/ else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
+		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
 	} else message.reply('masuk voice chat nya dulu napa ?');
 
 }
