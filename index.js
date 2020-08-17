@@ -103,12 +103,13 @@ client.on('message', message => {
 				banData = banData.slice(2);
 				var banReason = "";
 				for (var word in banData) {
-				banReason = banReason.concat(banData[word]+" ");
+					if (banData[word] < banData.length) banReason = banReason.concat(banData[word]+" ");
+					else banReason = banReason.concat(banData[word]);				
 				}
 				var userBan = message.guild.member(message.mentions.users.first());
 				userBan.ban({days:0,banReason})
-				.then(message.channel.send("RIP "+message.mention.users.first().tag))
-				.catch(console.error)
+				.catch(console.error);
+				message.channel.send(`User ${userBan.tag} sudah di ban karena ${banReason}`);
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
 		} else if (MsgLow.includes("kick")) {
 			if (message.member.hasPermission('KICK_MEMBERS')) {
@@ -120,11 +121,16 @@ client.on('message', message => {
 				kickData = kickData.slice(2);
 				var kickReason = "";
 				for (var word in kickData) {
-				kickReason = kickReason.concat(kickData[word]+" ");
+					if (kickData[word] < kickData.length) kickReason = kickReason.concat(kickData[word]+" ");
+					else kickReason = kickReason.concat(kickData[word]);
 				}
 				var userKick = message.guild.member(message.mentions.users.first());
-				userKick.kick(kickReason);
+				userKick.kick(kickReason)
+				.catch(console.error);
+				message.channel.send(`User ${userKick.tag} sudah di kick karena ${kickReason}`);
 			} else message.channel.send("KAMU TIDAK BERKUASA!");
+		} else if (MsgLow.includes("warn")) {
+			   
 		} else message.channel.send("pake rus!help dlu sana")
 			/*case "play":
 			case "p":
