@@ -91,14 +91,23 @@ client.on('message', message => {
 		} else if (MsgLow == "info") {
 			message.channel.send("`Version : 1.0.1\nAuthor : OkutaJager\nCondition : Unstable\nMay crash anytime`");
 		} else if (MsgLow.includes("ban")) {
-			var banData = MsgLow.split(" ");
-			var banReasonArray = banData.slice(2);
-			var banReason = "";
-			for (var word in banReasonArray) {
+			if (message.member.hasPermission('BAN_MEMBERS')) {
+				if (!message.mentions.users.first() === undefined) return;
+				var banData = MsgLow.split(" ");
+				var banReasonArray = banData.slice(2);
+				var banReason = "";
+				for (var word in banReasonArray) {
 				banReason = banReason.concat(banReasonArray[word]+" ");
-			}
-			var userBan = message.mentions.users.first();
-			message.channel.send(userBan+"\n"+banReason)
+				}
+				var userBan = message.mentions.users.first();
+				message.channel.send(userBan+"\n"+banReason);
+			} else message.channel.send("KAMU TIDAK BERKUASA!");
+		} else if (MsgLow.includes("kick")) {
+			if (message.member.hasPermission('KICK_MEMBERS')) {
+				if (!message.mentions.users.first() === undefined) return;
+				var userKick = message.mentions.users.first();
+				message.channel.send(userKick);
+			} else message.channel.send("KAMU TIDAK BERKUASA!");
 		} else message.channel.send("pake rus!help dlu sana")
 			/*case "play":
 			case "p":
