@@ -40,10 +40,10 @@ async function stop(message) {
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
-		} else if (message.member.roles.cache.some("DJ")) {
+		} /*else if (message.member.roles.cache.some("DJ")) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang DJ');
-		} else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
+		}*/ else message.reply("ngemis mod dlu sana ato ngemis DJ dlu");
 	} else message.reply('masuk voice chat nya dulu napa ?');
 
 }
