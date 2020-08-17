@@ -37,7 +37,7 @@ async function stop(message) {
 		return;
 	}
 	if (userVoiceChannel.channel === clientVoiceConnection.channel) {
-		if (message.member.hasPermission('MANAGE_CHANNEL')) {
+		if (message.member.hasPermission('MANAGE_CHANNELS')) {
 			clientVoiceConnection.channel.leave();
 			message.channel.send('Siap bang admin');
 		} else if (message.member.roles.name("DJ")) {
