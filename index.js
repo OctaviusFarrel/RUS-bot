@@ -6,12 +6,12 @@ const fs = require('fs');
 const ProfilePicture = 'http://smkrus.sch.id/wp-content/uploads/2020/05/logo.png'
 const myid = parseInt(process.env.token,10)
 const CommandList = {
-	"help":"menunjukkan list command",
-	"invite":"menambahkan bot mu ke server lain",
-	"pekora":"commit war crimes",
-	"info":"info seputar bot",
-	"disconnect":"keluar dari voice channel",
-	"play":"coming soon"
+	"help":"Menunjukan list command",
+	"invite":"Menambahkan bot mu ke server lain",
+	"pekora":"Commit war crimes",
+	"info":"Info seputar bot",
+	"disconnect":"Membuat Bot keluar dari voice channel",
+	"play":"Coming soon"
 }
 const ytdl = require('ytdl-core');
 
