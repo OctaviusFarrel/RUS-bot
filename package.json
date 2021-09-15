@@ -1,7 +1,6 @@
 {
-  "name": "rusbot",
-  "version": "1.0.0",
-  "description": "ronaldinho soccer",
+  "name": "rus-bot",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,10 +8,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.2.0",
-    "ffmpeg-static":"^4.2.6",
-    "@discordjs/opus":"^0.3.2",
-    "ytdl-core":"^3.2.1",
-    "opusscript":"^0.0.7"
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0"
   }
 }
