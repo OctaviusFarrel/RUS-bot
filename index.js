@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { joinVoiceChannel, getVoiceConnection } = require('@discordjs/voice');
+const { joinVoiceChannel, getVoiceConnection, VoiceConnectionStatus } = require('@discordjs/voice');
 const { Client, Intents, MessageEmbed } = require("discord.js");
 
 function embedMaker(title, description, url = "",) {
@@ -55,6 +55,12 @@ client.on('interactionCreate', async interaction => {
 					"https://discord.com/api/oauth2/authorize?client_id=744547971353411585&permissions=8&scope=bot%20applications.commands")
 				await interaction.reply({embeds:[embed],ephemeral:true})
 			case "keluar":
+				if (!botVoiceChannels.get(interaction.guildId)) {
+					await interaction.reply({content: "Saya tidak berada di dalam voice channel", ephemeral: true});
+					return;
+				}
+				botVoiceChannels.get(interaction.guildId).disconnect();
+				await interaction.reply("Saya sudah keluar dari voice channel!");
 				break;
 			case "temenin":
 				if (botVoiceChannels.get(interaction.guildId)) {
@@ -70,6 +76,10 @@ client.on('interactionCreate', async interaction => {
 						selfDeaf: false
 					})
 					botVoiceChannels.set(interaction.guildId, connection);
+					connection.once(VoiceConnectionStatus.Disconnected, async (oldState, newState) => {
+						connection.destroy();
+						botVoiceChannels.delete(interaction.guildId);
+					});
 					await interaction.reply("Saya sudah join!");
 				} else await interaction.reply({content: "Anda tidak di dalam voice channel!", ephemeral: true});
 				break;
